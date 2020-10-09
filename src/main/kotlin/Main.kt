@@ -10,10 +10,13 @@ fun main() {
             }
             body {
                 h1 {
-                    +"John Doe"
+                    +"Armenakyan Karen"
                 }
                 p {
-                    +"I am going to build a Death Star!"
+                    +"I am going to make a multiplayer online pong game"
+                }
+                img {
+                    src = "resources/images/pong.jpg"
                 }
             }
         }
