@@ -1,0 +1,1 @@
+rootProject.name = "pong-kcs-2020"
