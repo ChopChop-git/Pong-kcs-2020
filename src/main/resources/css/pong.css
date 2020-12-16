@@ -71,7 +71,7 @@ input {
     font-size: 14px;
     margin: 16px;
     width: 90%;
-    min-height: 30px;
+    min-height: 27px;
     border-radius: 200px;
     font-weight: bold;
     padding: 12px 20px;
@@ -96,5 +96,12 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 48px;
+    margin-top: 0;
+}
+
+h2 {
+    color: white;
+    letter-spacing: 2px;
+    font-size: 36px;
     margin-top: 0;
 }

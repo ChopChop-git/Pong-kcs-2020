@@ -11,12 +11,12 @@ fun main() {
                 +"Pong"
             }
             link {
-                href = "./css/pong.css"
+                href = "css/pong.css"
                 rel = "stylesheet"
             }
             script {
                 type = "text/javascript"
-                src = "./js/pong.js"
+                src = "js/mainPage.js"
             }
         }
         document.body!!.append.apply {
@@ -38,9 +38,9 @@ fun main() {
                     id = "loginMenu"
                     h1 { +"Login" }
                     input {
-                        id = "emailLogin"
-                        type = InputType.email
-                        placeholder = "your_email@example.pong"
+                        id = "nicknameLogin"
+                        type = InputType.text
+                        placeholder = "Your nickname"
                     }
                     input {
                         id = "passwordLogin"
@@ -55,11 +55,11 @@ fun main() {
                 div {
                     id = "registerMenu"
                     h1 { +"Register" }
-                    input {
+/*                    input {
                         id = "emailRegister"
                         type = InputType.email
                         placeholder = "your_email@example.pong"
-                    }
+                    }*/
                     input {
                         id = "nicknameRegister"
                         type = InputType.text
@@ -79,11 +79,45 @@ fun main() {
                     id = "startMenu"
                     h1 { +"Pong" }
                     button {
-                        id = "startBtn"
-                        +"Start"
+                        id = "singlePlayerBtn"
+                        +"Single-Player"
+                    }
+                    button {
+                        id = "createLobbyBtn"
+                        +"Create Game"
+                    }
+                    button {
+                        id = "joinLobbyBtn"
+                        +"Join Game"
                     }
                 }
                 div {
+                    id = "createGameMenu"
+                    h2 { +"Your invite link" }
+                    input {
+                        id = "createLink"
+                        type = InputType.url
+                        placeholder = "some_link"
+                        readonly = true
+                    }
+                    button {
+                        id = "createGameBtn"
+                        +"Start game"
+                    }
+                }
+                div {
+                    id = "joinGameMenu"
+                    h2 { +"Paste an invite link" }
+                    input {
+                        id = "joinLink"
+                        type = InputType.url
+                    }
+                    button {
+                        id = "joinGameBtn"
+                        +"Start game"
+                    }
+                }
+                /*div {
                     id = "pauseMenu"
                     h1 { +"Pause" }
                     button {
@@ -112,7 +146,7 @@ fun main() {
                         id = "againBtn"
                         +"Try again"
                     }
-                }
+                }*/
             }
         }
     }
