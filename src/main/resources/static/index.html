@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pong</title>
+    <link href="./css/pong.css" rel="stylesheet">
+    <script type="text/javascript" src="./js/mainPage.js"></script>
+    <script type="text/javascript" src="./js/lib.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="loading">
+    <h2>Loading...</h2>
+    <img src="img/loading.gif">
+</div>
+<div id="wrap">
+    <div id="welcomeMenu" class="">
+        <h1>Register/Login</h1>
+        <button id="welcomeLoginBtn">Login</button><button id="welcomeRegisterBtn">Register</button>
+    </div>
+    <div id="loginMenu" class="active">
+        <h1>Login</h1>
+        <input id="nicknameLogin" type="text" placeholder="your_nickname"><input id="passwordLogin" type="password" placeholder="Your password"><button id="loginBtn">Login</button>
+    </div>
+    <div id="registerMenu" class="">
+        <h1>Register</h1>
+        <input id="nicknameRegister" type="text" placeholder="Your nickname"><input id="passwordRegister" type="password" placeholder="Your password"><button id="registerBtn">Register</button>
+    </div>
+    <div id="startMenu">
+        <h1>Pong</h1>
+        <button id="singlePlayerBtn">Single-Player</button>
+        <button id="createLobbyBtn">Create Game</button>
+        <button id="joinLobbyBtn">Join Game</button>
+    </div>
+    <div id="createGameMenu">
+        <h2>Your invite link</h2>
+        <input id="createLink" type="url" placeholder="some link" readonly="true">
+        <button id="createGameBtn">Start Game</button>
+    </div>
+    <div id="joinGameMenu">
+        <h2>Paste an invite link</h2>
+        <input id="joinLink" type="url">
+        <button id="joinGameBtn">Start Game</button>
+    </div>
+</div>
+</body>
+
+</html>

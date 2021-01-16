@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pong</title>
+    <link href="./css/pong.css" rel="stylesheet">
+    <script src="./js/singleplayer.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        function resizeCanvas() {
+            let canvas = document.getElementById("gameCanvas");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+    </script>
+    <script type="text/javascript" src="./js/lib.js"></script>
+</head>
+<body onload="resizeCanvas()">
+<div id="loading">
+    <h2>Loading...</h2>
+    <img src="img/loading.gif">
+</div>
+<div id="wrap">
+    <div id="startMenu">
+        <h1>Pong</h1>
+        <button id="startBtn">Start</button>
+    </div>
+    <div id="pauseMenu">
+        <h1>Pause</h1>
+        <button id="continueBtn">Continue</button>
+        <button id="restartBtn">Restart</button>
+    </div>
+    <div id="gameOverMenu">
+        <h1 id="gameMessage"></h1>
+        <button id="againBtn">Try again</button>
+    </div>
+    <div id="gameplay">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
+</div>
+</body>
+</html>
+
+
+
