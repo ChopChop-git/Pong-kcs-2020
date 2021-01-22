@@ -1,6 +1,7 @@
+
 package engine.entities
 
-import javax.persistence.*
+/*import javax.persistence.*
 
 @Entity(name = "games")
 class Game(
@@ -8,10 +9,10 @@ class Game(
     @field:JoinColumn
     val firstPlayer: User,
 
-    @field:ManyToOne
+    @field:ManyToOne(fetch = FetchType.LAZY)
     @field:JoinColumn
     val secondPlayer: User,
 
     @Column
     val result: String
-): BaseEntity<Long>() {}
+): BaseEntity<Long>() {}*/

@@ -1,5 +1,6 @@
 package engine.services
 
+/*
 import engine.entities.Game
 import engine.repositories.GameRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -10,7 +11,6 @@ import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Service
 
-@Component
 @Service
 class GameService(@Autowired private val gameDB: GameRepository) {
 
@@ -26,4 +26,4 @@ class GameService(@Autowired private val gameDB: GameRepository) {
         val paging: Pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy))
         return gameDB.findAll(paging)
     }
-}
+}*/

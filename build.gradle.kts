@@ -1,3 +1,4 @@
+import org.gradle.jvm.tasks.Jar
 plugins {
     val kotlinVersion = "1.4.21"
     id("org.springframework.boot") version "2.4.1"
@@ -17,6 +18,7 @@ repositories {
     jcenter()
 }
 
+
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 application {
@@ -32,7 +34,7 @@ dependencies {
     implementation("com.h2database:h2")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    //implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-websocket")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -41,5 +43,3 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         jvmTarget = "11"
     }
 }
-
-

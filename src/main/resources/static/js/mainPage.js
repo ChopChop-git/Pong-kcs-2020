@@ -14,21 +14,7 @@ window.onload = function() {
         loginMenu = document.getElementById('loginMenu'),
         loginBtn = document.getElementById('loginBtn'),
         nickLoginInput = document.getElementById('nicknameLogin'),
-        passLoginInput = document.getElementById('passwordLogin'),
-
-        startMenu = document.getElementById('startMenu'),
-        singlePlayerBtn = document.getElementById('singlePlayerBtn'),
-        createLobbyBtn = document.getElementById('createLobbyBtn'),
-        joinLobbyBtn = document.getElementById('joinLobbyBtn'),
-
-        createGameMenu = document.getElementById('createGameMenu'),
-        createGameBtn = document.getElementById('createGameBtn'),
-        createLinkInput = document.getElementById('createLink'),
-
-        joinGameMenu = document.getElementById('joinGameMenu'),
-        joinGameBtn = document.getElementById('joinGameBtn'),
-        joinLinkInput = document.getElementById('joinLink');
-
+        passLoginInput = document.getElementById('passwordLogin');
 
     welcomeLoginBtn.addEventListener('click', function() {
         changeActiveDiv(welcomeMenu, loginMenu);
@@ -38,69 +24,17 @@ window.onload = function() {
     })
     loginBtn.addEventListener('click', login);
     registerBtn.addEventListener('click', register);
-    singlePlayerBtn.addEventListener('click', startSingle);
-    createLobbyBtn.addEventListener('click', createLobby);
-    joinLobbyBtn.addEventListener('click', joinLobby);
-    createGameBtn.addEventListener('click', createGame)
-    joinGameBtn.addEventListener('click', joinGame)
+
 
 
 
     welcomeMenu.className = 'active';
     loginMenu.className = '';
     registerMenu.className = '';
-    startMenu.className = '';
-    createGameMenu.className = '';
-    joinGameMenu.className = '';
+
 
     validateLogin()
 
-    createLinkInput .onclick = function() {
-        this.select();
-        document.execCommand('copy');
-        alert('Copied link to the clipboard');
-    }
-
-    function startSingle() {
-        window.location.href = getCurrentHostname() + "/singleplayer"
-    }
-
-    function createGame() {
-        window.location.href = createLinkInput.value
-    }
-
-    function joinGame()  {
-        const url = joinLinkInput.value
-        if (url === "") {
-            alert("Please paste game url")
-            return
-        }
-        window.location.href = url
-    }
-
-    function createLobby() {
-        const url =  getCurrentHostname() + "/api/createLobby";
-        $.ajax({
-            type: "GET",
-            url: url,
-            dataType: "text"
-        })
-            .done((data) => {
-                createLinkInput.value = data
-                changeActiveDiv(startMenu, createGameMenu);
-            })
-            .fail((error) => {
-                switch (error.status) {
-                    default:
-                        alert(JSON.stringify(error));
-                        break;
-                }
-            });
-    }
-
-    function joinLobby() {
-        changeActiveDiv(startMenu, joinGameMenu);
-    }
 
     function login() {
         const body = {
@@ -116,8 +50,8 @@ window.onload = function() {
             data: JSON.stringify(body),
         })
             .done((data) => {
-                console.log("Successfully logged in")
-                changeActiveDiv(loginMenu, startMenu);
+                console.log("Successfully logged in");
+                proceedToPage("/start");
             })
             .fail((error) => {
                 switch (error.status) {
@@ -151,7 +85,7 @@ window.onload = function() {
         })
             .done((data) => {
                 console.log("Successfully registered")
-                changeActiveDiv(registerMenu, startMenu);
+                proceedToPage("/start");
             })
             .fail((error) => {
                 switch (error.status) {
@@ -169,13 +103,13 @@ window.onload = function() {
     }
 
     function validateLogin() {
-        const userId = getCookie("user_id");
-        if (userId === undefined) return;
+        const sessionId = getCookie("session_id");
+        if (sessionId === undefined) return;
 
         const url =  getCurrentHostname() + "/api/validate";
         const body = {
-            key: "user_id",
-            userId: userId
+            key: "session_id",
+            sessionId: sessionId
         }
 
         $.ajax({
@@ -188,7 +122,7 @@ window.onload = function() {
                 console.log(`responded 200 with ${data}`)
                 if (data === "true") {
                     console.log("Redirecting to start Menu")
-                    changeActiveDiv(welcomeMenu, startMenu);
+                    proceedToPage("/start");
                 }
             })
             .fail((error) => {

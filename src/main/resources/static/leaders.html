@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pong</title>
+    <link href="./css/pong.css" rel="stylesheet">
+    <script type="text/javascript" src="./js/leaders.js"></script>
+    <script type="text/javascript" src="./js/lib.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div id="wrap" style="display:flex">
+    <div class="active" id="leaderTable">
+    <h2>Leader Table</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th th:text="Pos" />
+            <th th:text="Nickname" />
+            <th th:text="Score" />
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, pos: ${tablePage.content}">
+            <td th:text="${pos.index}" />
+            <td th:text="${user[0]}" />
+            <td th:text="${user[1]}" />
+        </tr>
+        </tbody>
+    </table>
+    <div th:if="${tablePage.totalPages > 0}" class="pagination"
+         th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/leaders(size=${tablePage.size}, page=${pageNumber})}"
+           th:text=${pageNumber}
+           th:class="${pageNumber==tablePage.number + 1} ? active"></a>
+    </div>
+    </div>
+</div>
+</body>
+
+</html>

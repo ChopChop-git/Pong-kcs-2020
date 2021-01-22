@@ -6,17 +6,11 @@
     <link href="../../css/pong.css" rel="stylesheet">
     <script src="../../js/gameplay.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-        function resizeCanvas() {
-            let canvas = document.getElementById("gameCanvas");
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-    </script>
+    <script type="text/javascript" src="../../js/lib.js"></script>
 </head>
-<body onload="resizeCanvas()">
+<body>
 <div id="loading">
-    <h2>Loading...</h2>
+    <h2>Currently under construction</h2>
     <img src="../../img/loading.gif">
 </div>
 <div id="wrap">
@@ -29,7 +23,7 @@
     </div>
     <div id="gameOverMenu" class="">
         <h1 id="gameMessage"></h1>
-        <button id="againBtn">Try again</button>
+        <button id="exitBtn">Exit</button>
     </div>
 </div>
 </body>

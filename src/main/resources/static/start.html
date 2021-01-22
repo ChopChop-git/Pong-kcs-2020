@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pong</title>
+    <link href="./css/pong.css" rel="stylesheet">
+    <script type="text/javascript" src="./js/startPage.js"></script>
+    <script type="text/javascript" src="./js/lib.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="loading">
+    <h2>Loading...</h2>
+    <img src="img/loading.gif">
+</div>
+<div id="wrap">
+    <div id="startMenu">
+        <h1>Pong</h1>
+        <button id="singlePlayerBtn">Single-Player</button>
+        <button id="createLobbyBtn">Create Game</button>
+        <button id="joinLobbyBtn">Join Game</button>
+        <button id="leaderBtn">Leader Table</button>
+    </div>
+    <div id="createGameMenu">
+        <h2>Your invite link</h2>
+        <input id="createLink" type="url" placeholder="some link" readonly="true">
+        <button id="createGameBtn">Start Game</button>
+    </div>
+    <div id="joinGameMenu">
+        <h2>Paste an invite link</h2>
+        <input id="joinLink" type="url">
+        <button id="joinGameBtn">Start Game</button>
+    </div>
+</div>
+</body>
+
+</html>

@@ -8,6 +8,10 @@ function getCurrentHostname() {
     return window.location.href.split('/').slice(0, 3).join('/')
 }
 
+function proceedToPage(path) {
+    window.location.href = getCurrentHostname() + path;
+}
+
 function changeActiveDiv(from, to) {
     from.className = '';
     to.className = 'active';
@@ -18,3 +22,10 @@ function getCookie(name) {
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
+
+function resizeCanvas() {
+    let canvas = document.getElementById("gameCanvas");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+

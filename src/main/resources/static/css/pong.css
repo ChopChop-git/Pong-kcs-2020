@@ -90,7 +90,7 @@ input {
     cursor: text;
 }
 
-#loginMenu , #registerMenu {
+#loginMenu, #registerMenu {
     display: inline-block;
     vertical-align: top;
     width: 100%;
@@ -115,4 +115,58 @@ h2 {
     letter-spacing: 2px;
     font-size: 36px;
     margin-top: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    color: white;
+}
+
+/*table tr:nth-child(even) {*/
+/*    background-color: white;*/
+/*    color: black;*/
+/*}*/
+
+table tr:hover {
+    background-color: #837d7d;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+a:link, a:visited {
+    color: white;
+}
+
+a:hover {
+    color: #807d7d;
+}
+
+a:active {
+    color: black;
+}
+
+#leaderTable > div.pagination {
+    margin-top: 20px;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    float: left;
+    padding: 8px 4px;
+    text-decoration: none;
 }

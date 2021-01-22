@@ -1,10 +1,7 @@
 package engine.entities
 
 import javax.persistence.*
-import javax.validation.constraints.NotBlank
-import javax.validation.constraints.NotNull
-import javax.validation.constraints.Pattern
-import javax.validation.constraints.Size
+import javax.validation.constraints.*
 
 @Entity(name = "users")
 class User (
@@ -16,14 +13,12 @@ class User (
     @field:NotBlank
     val password: String,
 
-    @OneToMany(mappedBy = "id")
-    val games: MutableList<Game> = mutableListOf()
+    /*@OneToMany(mappedBy = "id")
+    val games: MutableList<Game> = mutableListOf()*/
 
-    /*,
-    @field:Enumerated(value = EnumType.STRING)
-    @Column
-    @field:NotNull
-    val role: UserRoles = UserRoles.USER*/
+    @Column(updatable = true)
+    @field:Min(0)
+    val highestScore: Int
 
 ) : BaseEntity<Long>() {}
 

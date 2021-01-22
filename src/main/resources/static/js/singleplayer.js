@@ -1,5 +1,4 @@
 window.onload = function () {
-
     setTimeout(showWrap, 2000);
 
 
@@ -28,46 +27,60 @@ window.onload = function () {
         startBtn = document.getElementById('startBtn'),
         continueBtn = document.getElementById('continueBtn'),
         restartBtn = document.getElementById('restartBtn'),
-        againBtn = document.getElementById('againBtn'),
+        exitBtn = document.getElementById('exitBtn'),
         gameMessage = document.getElementById('gameMessage'),
         gamePaused = false,
         gameInProgress = false,
-        scoreToWin = 10,
+        scoreToWin = 5,
         difficultyLevel = 1,
         gameInterval = window.setInterval(function () {
         });
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    ballPositionY = canvas.height / 2 - ballSize / 2
-    paddleOneY = canvas.height / 2 - paddleHeight / 2;
-    paddleTwoY = canvas.height / 2 - paddleHeight / 2;
-    ballVelocityY = getRandomNumber(-5, 5) * (.25 * difficultyLevel);
+    resizeCanvas();
 
     window.addEventListener('resize', windowResize);
     startBtn.addEventListener('click', startGame);
     continueBtn.addEventListener('click', resumeGame);
     restartBtn.addEventListener('click', resetGame);
-    againBtn.addEventListener('click', resetGame);
+    exitBtn.addEventListener('click', exit);
     document.addEventListener('keydown', keyDown);
     document.addEventListener('keyup', keyUp);
 
     startMenu.className = 'active';
-    pauseMenu.className = '';
-    gameplay.className = '';
-    gameOverMenu.className = '';
 
     window.onblur = function () {
         if (gameInProgress) pauseGame();
     }
 
+    function exit() {
+        const body =  {
+            score: playerOneScore
+        };
+        const url =  getCurrentHostname() + "/api/saveScore";
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: body,
+            contentType: "application/x-www-form-urlencoded",
+        })
+            .done((data) => {
+                console.log("Saved player score")
+                proceedToPage("/start");
+            });
+        // proceedToPage("/start");
+    }
+
+    function resetElements() {
+        paddleOneY = canvas.height / 2 - paddleHeight / 2;
+        paddleTwoY = canvas.height / 2 - paddleHeight / 2;
+        resetBall();
+    }
     function startGame() {
         gameInProgress = true;
-        gameplay.className = '';
-        startMenu.className = '';
-        gameOverMenu.className = '';
-        pauseMenu.className = '';
+        resetElements();
         gamePaused = false;
+        startMenu.className = '';
         gameInterval = window.setInterval(function () {
             moveEverything();
             drawEverything();
@@ -78,11 +91,10 @@ window.onload = function () {
         playerOneScore = 0;
         playerTwoScore = 0;
         difficultyLevel = 1;
-        ballPositionX = canvas.width / 2 - ballSize / 2;
-        ballPositionY = canvas.height / 2 - ballSize / 2;
-        paddleOneY = canvas.height / 2 - paddleHeight / 2;
-        paddleTwoY = canvas.height / 2 - paddleHeight / 2;
-        ballVelocityY = getRandomNumber(-5, 5) * (.25 * difficultyLevel);
+        startMenu.className = '';
+        pauseMenu.className = '';
+        gameOverMenu.className = '';
+        resetElements();
         startGame();
     }
 
@@ -97,8 +109,7 @@ window.onload = function () {
     function pauseGame() {
         if (!gamePaused) {
             gamePaused = true;
-            gameplay.className = '';
-            pauseMenu.className = 'active';
+            changeActiveDiv(gameplay, pauseMenu);
             clearInterval(gameInterval);
         }
     }
@@ -106,7 +117,6 @@ window.onload = function () {
     function resumeGame() {
         if (gamePaused) {
             gamePaused = false;
-            gameplay.className = '';
             pauseMenu.className = '';
             startGame();
         }
@@ -157,22 +167,20 @@ window.onload = function () {
         gameInProgress = false;
         clearInterval(gameInterval);
         gameMessage.textContent = '';
-        againBtn.textContent = '';
         if (playerWon) {
             gameMessage.textContent = 'You won!';
-            againBtn.textContent = 'Play again';
         } else {
-            gameMessage.textContent = 'Oh snap, you lost.';
-            againBtn.textContent = 'Try again';
+            gameMessage.textContent = `You lost, score: ${playerOneScore}`;
         }
-        gameplay.className = '';
-        gameOverMenu.className = 'active';
+        changeActiveDiv(gameplay, gameOverMenu);
     }
 
     function moveEverything() {
         ballPositionX = ballPositionX + ballVelocityX;
         if (ballPositionX > canvas.width - paddleWidth * 2 - ballSize / 2) {
-            if (ballPositionY >= paddleTwoY && ballPositionY <= paddleTwoY + paddleHeight && ballPositionX < canvas.width - paddleWidth) {
+            if (ballPositionY >= paddleTwoY &&
+                ballPositionY <= paddleTwoY + paddleHeight &&
+                ballPositionX < canvas.width - paddleWidth) {
                 ballVelocityX = -ballVelocityX;
                 if (ballPositionY >= paddleTwoY &&
                     ballPositionY < paddleTwoY + paddleHeight * .2) {
@@ -195,7 +203,7 @@ window.onload = function () {
                 resetBall();
                 playerOneScore++;
                 difficultyLevel = playerOneScore * .5;
-                if (playerOneScore === scoreToWin) gameOver(true);
+                // if (playerOneScore === scoreToWin) gameOver(true);
             }
             randomizeGame();
         } else if (ballPositionX < paddleWidth * 2 + ballSize / 2) {
@@ -237,7 +245,7 @@ window.onload = function () {
         }
 
         if (paddleOneDirectionY === 'up' && paddleOneY >= 0) {
-            paddleOneY = paddleOneY - paddleOneVelocityY;
+            paddleOneY -= paddleOneVelocityY;
         } else if (paddleOneDirectionY === 'down' &&
             paddleOneY < (canvas.height - paddleHeight)) {
             paddleOneY += paddleOneVelocityY;
