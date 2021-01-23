@@ -41,6 +41,10 @@ window.onload = function() {
             nickname: nickLoginInput.value,
             password: passLoginInput.value
         }
+        if (body.password === "" || body.nickname === "") {
+            alert("Field is blank")
+            return
+        }
         const url =  getCurrentHostname() + "/api/login";
 
         $.ajax({
