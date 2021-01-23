@@ -27,7 +27,9 @@ class UserService(@Autowired private val userDB: UserRepository) {
     }
 
     fun updateScore(user: User, score: Int) {
-        userDB.updateScoreByNickname(user.nickname, score)
+        if (userDB.findByNickname(user.nickname)!!.highestScore < score) {
+            userDB.updateScoreByNickname(user.nickname, score)
+        }
     }
 
 

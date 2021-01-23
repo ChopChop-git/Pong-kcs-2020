@@ -25,6 +25,8 @@ interface UserRepository: PagingAndSortingRepository<User, Long> {
     fun updateScoreByNickname(@Param("nickname") nickname: String, @Param("score") score: Int)
 
 
+
+
 /*    @SqlResultSetMapping(
             name="groupDetailsMapping",
             classes = arrayOf(

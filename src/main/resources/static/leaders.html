@@ -24,7 +24,7 @@
         </thead>
         <tbody>
         <tr th:each="user, pos: ${tablePage.content}">
-            <td th:text="${pos.index}" />
+            <td th:text="${pos.index + 1}" />
             <td th:text="${user[0]}" />
             <td th:text="${user[1]}" />
         </tr>

@@ -123,7 +123,9 @@ window.onload = function () {
     }
 
     function windowResize() {
-        resetBall();
+        if (gamePaused === false) {
+            togglePause()
+        }
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         drawEverything();
