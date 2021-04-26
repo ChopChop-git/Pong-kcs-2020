@@ -205,7 +205,6 @@ window.onload = function () {
                 resetBall();
                 playerOneScore++;
                 difficultyLevel = playerOneScore * .5;
-                // if (playerOneScore === scoreToWin) gameOver(true);
             }
             randomizeGame();
         } else if (ballPositionX < paddleWidth * 2 + ballSize / 2) {
@@ -262,8 +261,6 @@ window.onload = function () {
     }
 
     function drawEverything() {
-        // canvasContext.fillStyle = 'black';
-        // canvasContext.fillRect(0,0,canvas.width,canvas.height);
         canvasContext.clearRect(0, 0, canvas.width, canvas.height);
         canvasContext.fillStyle = 'white';
         canvasContext.beginPath();
