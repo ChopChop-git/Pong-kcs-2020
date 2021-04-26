@@ -86,37 +86,4 @@ window.onload = function() {
     function joinLobby() {
         changeActiveDiv(startMenu, joinGameMenu);
     }
-
-
-    /*function validateLogin() {
-        const userId = getCookie("user_id");
-        if (userId === undefined) return;
-
-        const url =  getCurrentHostname() + "/api/validate";
-        const body = {
-            key: "user_id",
-            userId: userId
-        }
-
-        $.ajax({
-            type: "GET",
-            url: url,
-            data: body,
-            dataType: "text"
-        })
-            .done((data) => {
-                console.log(`responded 200 with ${data}`)
-                if (data === "true") {
-                    console.log("Redirecting to start Menu")
-                    changeActiveDiv(welcomeMenu, startMenu);
-                }
-            })
-            .fail((error) => {
-                switch (error.status) {
-                    default:
-                        alert(JSON.stringify(error));
-                        break;
-                }
-            });
-    }*/
 }
