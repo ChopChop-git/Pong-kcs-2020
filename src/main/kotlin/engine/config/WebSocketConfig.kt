@@ -1,4 +1,3 @@
-/*
 package engine.config
 
 import org.springframework.context.annotation.Configuration
@@ -19,4 +18,4 @@ class WebSocketConfig : WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/pong-websocket")
         registry.addEndpoint("/pong-websocket").withSockJS()
     }
-}*/
+}

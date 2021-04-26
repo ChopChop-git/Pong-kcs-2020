@@ -5,8 +5,6 @@ import org.springframework.messaging.handler.annotation.MessageMapping
 import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.stereotype.Controller
 
-// TODO eb rot vashego casino
-/*
 @Controller
 class GameController {
 
@@ -18,7 +16,7 @@ class GameController {
 }
 
 class Game {
-
+ //TODO
 }
-
-class MoveMessage {}*/
+//TODO
+class MoveMessage {}

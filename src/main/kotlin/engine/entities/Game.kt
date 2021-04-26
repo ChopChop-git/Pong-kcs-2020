@@ -1,7 +1,7 @@
 
 package engine.entities
 
-/*import javax.persistence.*
+import javax.persistence.*
 
 @Entity(name = "games")
 class Game(
@@ -15,4 +15,4 @@ class Game(
 
     @Column
     val result: String
-): BaseEntity<Long>() {}*/
+): BaseEntity<Long>() {}
